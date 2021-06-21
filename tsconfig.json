@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*",
+    "src/main.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

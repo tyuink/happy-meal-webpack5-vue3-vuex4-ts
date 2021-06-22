@@ -1,6 +1,7 @@
 // webpack.config.js
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -77,7 +78,8 @@ module.exports = {
       title: 'Bus 3',
       minify: {
         collapseWhitespace: true,
-        removeComments: true
+        removeComments: true,
+        offlineGoogleAnalytics: false
       }
     }),
     new CopyWebpackPlugin({
@@ -93,6 +95,12 @@ module.exports = {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      cacheId: 'webpack-pwa',
+      skipWaiting: true,
+      clientsClaim: true,
+      maximumFileSizeToCacheInBytes: 5000000
     }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin()
